@@ -1,0 +1,27 @@
+<div>
+  <h2>User info</h2>
+
+  <%= image_tag @user.get_profile_image %>
+  <p>name<%= @user.name %></p>
+  <p>introduction<%= @user.introduction %></p>
+  <% if @user == current_user %>
+  <%= link_to "Edit", edit_user_path(@user) %>
+  <% end %>
+</div>
+
+<%= render 'books/list', book: @book %>
+
+<% @books.each do |book| %>
+<div>
+  <h2>Books</h2>
+  <%= link_to user_path do %>
+  <%= image_tag @user.get_profile_image %>
+  <% end %>
+  <p>Title
+  <%= link_to book_path(book.id) do %>
+  <%= book.title %>
+  <% end %>
+  </p>
+  <p>Opinion<%= book.body %></p>
+</div>
+<% end %>
