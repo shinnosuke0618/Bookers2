@@ -2,6 +2,7 @@
 <p><%= image_tag current_user.get_profile_image %></p>
 <p>name<%= current_user.name %></p>
 <p>introduction<%= current_user.introduction %></p>
+<%= link_to "Edit", edit_user_path(current_user) %>
 
 <h2>New book</h2>
 <%= form_with model: book do |f| %>

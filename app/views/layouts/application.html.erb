@@ -5,52 +5,73 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/7e855d2f1d.js" crossorigin="anonymous"></script>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 <header>
-      <li>
-        <%= link_to "Bookers", root_path %>
-      </li>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+    <a class="navbar-brand" href="/"><span>Bookers</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+      </span>
+     </button>
 
+     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
     <% if user_signed_in? %>
-    　<li>
+      <li>
         <%= link_to "Home", user_path(current_user) %>
       </li>
-      <li>
+    　<li>
         <%= link_to "Users", users_path %>
       </li>
       <li>
         <%= link_to "Books", books_path %>
       </li>
       <li>
-        <%= link_to "Log_out", destroy_user_session_path, method: :delete %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
     　<li>
         <%= link_to "Home", root_path %>
       </li>
+       <li><a class="fas fa-link nav-link text-light" href="/home/about"> About</a></li>
       <li>
         <%= link_to "About", about_path %>
       </li>
       <li>
-        <%= link_to "Sign_up", new_user_registration_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
       </li>
       <li>
-        <%= link_to "Log_in", new_user_session_path %>
+        <%= link_to "Log in", new_user_session_path %>
       </li>
-
+    </ul>
+    </div>
+   </div>
+  </nav>
 
     <% end %>
 </header>
-
+ <% if flash[:notice] %>
+  <div class="alert alert-info">
+    <%= flash[:notice] %>
+</div>
+<% end %>
 <%= yield %>
 
 <footer>
-  <p>CopyRight hnfratop.inc</p>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>
 </footer>
-  </body>
-</html>
