@@ -22,11 +22,9 @@
       <span class="navbar-toggler-icon">
       </span>
      </button>
-
+     <% if user_signed_in? %>
      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <% if user_signed_in? %>
       <ul class="navbar-nav ml-auto">
-
       <li class="nav-item mr-3">
         <%= link_to user_path(current_user) do %>
         <i class="fas fa-home text-light"></i><span class="text-light">Home</span>
@@ -45,7 +43,10 @@
         <%= link_to destroy_user_session_path, method: :delete do %>
         <i class="fas fa-sign-out-alt text-light"></i><span class="text-light">Log out</span>
         <% end %>
+       </li>
+      </ul>
     <% else %>
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item mr-3">
         <%= link_to root_path do %>
         <i class="fas fa-home text-light"></i><span class="text-light">Home</span>
